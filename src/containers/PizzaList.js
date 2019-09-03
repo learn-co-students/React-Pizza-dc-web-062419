@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Pizza from '../components/Pizza'
-class PizzaList extends Component {
+import React, { Component } from "react";
+import Pizza from "../components/Pizza";
 
+class PizzaList extends Component {
   render() {
     return (
       <table className="table table-striped">
@@ -14,14 +14,17 @@ class PizzaList extends Component {
           </tr>
         </thead>
         <tbody>
-          {
-            //render Pizza here
-          }
+          {this.props.pizzas.map(thisPizza => (
+            <Pizza
+              pizza={thisPizza}
+              pizzaToForm={this.props.pizzaToForm}
+              key={thisPizza.id}
+            />
+          ))}
         </tbody>
       </table>
     );
   }
-
 }
 
 export default PizzaList;
