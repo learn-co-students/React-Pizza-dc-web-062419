@@ -24,6 +24,7 @@ class App extends Component {
     this.setState({
       pizzaToEdit: pizzaObject
     })
+    window.scrollTo(0, 0)
   }
 
   handlePizzaChange = (event) =>{
@@ -45,7 +46,7 @@ class App extends Component {
   }
 
   handleSubmit = (pizzaObject)=>{
-    console.log(pizzaObject.vegetarian)
+
     const pizzaData = {
       topping: pizzaObject.topping,
       size: pizzaObject.size,
@@ -64,7 +65,7 @@ class App extends Component {
     .then(editedPizza => { 
         const pizzas = this.state.pizzas.map( 
           pizza => pizza.id === pizzaObject.id ? editedPizza : pizza )
-        return this.setState({ pizzas })
+          return this.setState({ pizzas })
     })
   }
 

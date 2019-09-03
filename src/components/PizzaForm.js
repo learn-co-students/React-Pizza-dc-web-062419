@@ -56,7 +56,7 @@ const PizzaForm = (props) => {
         <div className="col">
           <button type="submit" 
             className="btn btn-success" 
-            onClick={()=>props.handleSubmit(props.pizzaToEdit)}
+            onClick={(event)=>props.handleSubmit(event, props.pizzaToEdit)}
           >
               Submit
           </button>

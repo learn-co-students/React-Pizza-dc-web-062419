@@ -3,7 +3,7 @@
     {
       "id": 1,
       "topping": "Plain",
-      "size": "Small",
+      "size": "Large",
       "vegetarian": true
     },
     {
@@ -20,9 +20,9 @@
     },
     {
       "id": 4,
-      "topping": "Sausage",
-      "size": "Small",
-      "vegetarian": false
+      "topping": "Vegan sausage ",
+      "size": "Large",
+      "vegetarian": true
     },
     {
       "id": 5,
@@ -56,9 +56,9 @@
     },
     {
       "id": 10,
-      "topping": "Vegan chicken",
+      "topping": "Chicken",
       "size": "Large",
-      "vegetarian": true
+      "vegetarian": false
     }
   ]
 }
