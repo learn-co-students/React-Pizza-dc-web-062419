@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from './components/Header'
 import PizzaForm from './components/PizzaForm'
 import PizzaList from './containers/PizzaList'
-import { timingSafeEqual } from 'crypto';
+
 class App extends Component {
 
 state = {
@@ -10,7 +10,7 @@ state = {
   editPizza: {
     topping: '',
     size: '',
-    // vegetarian: null
+    vegetarian: null
   }
 }
 
@@ -44,18 +44,42 @@ editSize = (e) => {
 }
 
 editVeg = (e) => {
+  let veggie = e.target.value === 'true'? true : false
   this.setState({
     editPizza: {...this.state.editPizza, 
-      vegetarian: e.target.value
+      vegetarian: veggie
     }
   })
-}
-
-renderSubmit = (id) =>  {
-this.state.pizzas.map(za => id === za.id)
 
 }
 
+updatePizza = (id) => {
+  let data = {
+    topping: this.state.editPizza.topping,
+    size: this.state.editPizza.size,
+    vegetarian: this.state.editPizza.vegetarian
+  }
+  fetch(`http://localhost:3000/pizzas/${id}`,{
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json',
+      'accepts': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+.then(res => res.json())
+.then(p => {
+  let updatePizza = this.state.pizzas.map((za) => {
+    if(za.id === p.id){
+     return p
+    }
+     else{
+       return za
+     }
+    })
+    this.setState({ pizzas: updatePizza})
+})
+}
 
   render() {
     return (
@@ -66,7 +90,7 @@ this.state.pizzas.map(za => id === za.id)
         editTopping={this.editTopping}
         editSize={this.editSize}
         editVeg={this.editVeg}
-        renderSubmit={this.renderSubmit}
+        updatePizza={this.updatePizza}
         />
         <PizzaList
         pizzas={this.state.pizzas}
